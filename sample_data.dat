@@ -1,0 +1,46 @@
+set Meet:= 1 2 3 4 5; 
+set Person:= A B C; 
+set Cuisines:= Chinese Indian Mexican;
+set Restaurants:= X Y Z W T; 
+
+param Avail: 1 2 3 4 5 := 
+A 1 0 0 1 1
+B 1 1 0 0 0
+C 0 1 1 1 1; 
+
+param Cusin_pref: Chinese Indian Mexican := 
+A 1 2 0
+B 2 2 1
+C 0 1 1; 
+
+param PricePM := 
+A 20 
+B 30 
+C 50; 
+
+param TimesMeetP := 
+A 2
+B 5
+C 3; 
+
+param RestPrice := 
+X 15
+Y 17
+Z 20
+W 25
+T 40; 
+
+param RestCuisines: Chinese Indian Mexican := 
+X 1 0 0
+Y 0 1 0
+Z 0 0 1
+W 0 0 1
+T 0 1 0; 
+
+param RestRating := 
+X 5
+Y 4
+Z 3
+W 3
+T 3; 
+ 
