@@ -5,3 +5,5 @@
 - allergy prefs
 - require that a person go to a hangout with someone that they already know 
 - dont want to meet with opps 
+- certain restaurant only once.
+- nonconsecutive cuisines
