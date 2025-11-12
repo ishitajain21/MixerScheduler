@@ -1,3 +1,5 @@
+# Currently maximize cuisine preference
+
 set Meet; 
 set Person; 
 set Cuisines; 
