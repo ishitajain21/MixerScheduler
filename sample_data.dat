@@ -1,7 +1,8 @@
 set Meet:= 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45;
 set Person:= A B C D E F G H I;
+set Week:= 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 set Cuisines:= Thai Chinese Vietnamese Japanese Indian Italian Mexican American Mediterranean;
-set Restaurants:= X Y Z W T;
+set Restaurants:= AA BB CC DD EE FF GG HH II JJ KK LL MM NN OO PP QQ RR SS TT UU VV WW;
 
 
 param Avail: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 :=
@@ -66,7 +67,16 @@ JJ 30
 KK 50
 LL 50
 MM 50
-NN 20;
+NN 20
+OO 20
+PP 20
+QQ 30
+RR 20
+SS 20
+TT 20
+UU 20
+VV 20
+WW 20;
 
 
 param RestCuisines: Thai Chinese Vietnamese Japanese Indian Italian Mexican American Mediterranean :=
@@ -83,7 +93,16 @@ JJ 0 0 0 0 0 0 0 1 0
 KK 0 0 0 0 0 0 0 1 0
 LL 0 0 0 0 0 1 0 0 0
 MM 0 0 0 0 0 0 0 1 0
-NN 0 0 0 0 0 1 0 0 0;
+NN 0 0 0 0 0 1 0 0 0
+OO 0 0 1 0 0 0 0 0 0
+PP 1 0 0 0 0 0 0 0 0
+QQ 0 1 0 0 0 0 0 0 0
+RR 0 0 0 1 0 0 0 0 0
+SS 0 0 0 0 1 0 0 0 0
+TT 0 0 0 0 1 0 0 0 0
+UU 0 1 0 0 0 0 0 0 0
+VV 0 0 0 1 0 0 0 0 0
+WW 1 0 0 0 0 0 0 0 0;
 
 
 param RestRating :=
@@ -100,4 +119,13 @@ JJ 3.9
 KK 4.6
 LL 3.9
 MM 4.4
-NN 3.4;
+NN 3.4
+OO 4.3
+PP 4.6
+QQ 3.7
+RR 4.5
+SS 4.6
+TT 4.2
+UU 2.3
+VV 3.8
+WW 4.0;
