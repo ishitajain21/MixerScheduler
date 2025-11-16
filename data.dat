@@ -76,7 +76,25 @@ SS 20
 TT 20
 UU 20
 VV 20
-WW 20;
+WW 20
+XX 20
+YY 20
+ZZ 30
+AB 20
+BC 20
+CD 30
+DE 20
+EF 30
+FG 20
+GH 20
+HI 20
+IJ 20
+JK 20
+KL 20
+LM 20
+MN 20
+NO 20
+OP 20;
 
 
 param RestCuisines: Thai Chinese Vietnamese Japanese Indian Italian Mexican American Mediterranean :=
@@ -102,7 +120,25 @@ SS 0 0 0 0 1 0 0 0 0
 TT 0 0 0 0 1 0 0 0 0
 UU 0 1 0 0 0 0 0 0 0
 VV 0 0 0 1 0 0 0 0 0
-WW 1 0 0 0 0 0 0 0 0;
+WW 1 0 0 0 0 0 0 0 0
+XX 0 0 0 0 0 0 0 1 0
+YY 0 1 0 0 0 0 0 0 0
+ZZ 0 0 0 0 0 0 0 1 0
+AB 0 0 0 0 0 1 0 0 0
+BC 0 0 0 0 0 0 0 1 0
+CD 0 0 0 0 0 0 0 1 0
+DE 0 0 0 0 0 0 0 1 0
+EF 0 0 0 0 0 0 0 0 1
+FG 0 0 0 1 0 0 0 0 0
+GH 0 0 1 0 0 0 0 0 0
+HI 0 0 1 0 0 0 0 0 0
+IJ 1 0 0 0 0 0 0 0 0
+JK 0 0 0 0 1 0 0 0 0
+KL 0 0 0 0 1 0 0 0 0
+LM 0 0 0 0 0 0 0 0 1
+MN 0 0 0 0 0 0 1 0 0
+NO 0 0 1 0 0 0 0 0 0
+OP 0 1 0 0 0 0 0 0 0;
 
 
 param RestRating :=
@@ -128,4 +164,22 @@ SS 4.6
 TT 4.2
 UU 2.3
 VV 3.8
-WW 4.0;
+WW 4.0
+XX 4.5
+YY 4.4
+ZZ 3.8
+AB 4.2
+BC 3.8
+CD 4.4
+DE 3.8
+EF 4.6
+FG 4.9
+GH 4.7
+HI 4.2
+IJ 3.5
+JK 4.4
+KL 4.1
+LM 4.4
+MN 3.8
+NO 4.4
+OP 4.6;
