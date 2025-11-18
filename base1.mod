@@ -55,7 +55,7 @@ subject to PickFriSat{w in Week}:
 
 # number of people per meeting is up to 8
 subject to eightPersonPerMeet{m in Meet}: 
-   sum {p in Person} whoGO[p, m] <= 6;
+   sum {p in Person} whoGO[p, m] <= 8;
 
 # number of meetings per semester is up to 5
 subject to fiveMeetPerSem:

@@ -1,9 +1,9 @@
 reset;
 option solver gurobi;
-model "minimizeSpend.mod"; 
+model "base1.mod"; 
 data "data.dat"; 
 solve;
-display whoGO > results.txt;
+display whoGO > whoGO.txt;
 display whenGO > whenGO.txt;
 display whereGO > whereGO.txt;
 display meetingPairs > meet.txt;
