@@ -16,6 +16,8 @@ param RestPrice{Restaurants};
 param RestCuisines{Restaurants, Cuisines};
 
 param RestRating{Restaurants};
+
+param Allergy{Restaurants, Person};
  
 var MinPrice{Meet} >= 0;  
 var TotalPrice >= 0;
@@ -53,7 +55,7 @@ subject to PickFriSat{w in Week}:
 
 # number of people per meeting is up to 8
 subject to eightPersonPerMeet{m in Meet}: 
-   sum {p in Person} whoGO[p, m] <= 8;
+   sum {p in Person} whoGO[p, m] <= 6;
 
 # number of meetings per semester is up to 5
 subject to fiveMeetPerSem:
@@ -72,8 +74,8 @@ subject to OneRestPerSem{r in Restaurants}:
     sum {m in Meet} whereGO[m, r] <= 1;
 
 # this person can never go to a restuarant that has 0
-#subject to Allergy{p in Person, r in Restaurants, m in Meet}:
-# z[p,m,r] <= Allergy[p,r]; 
+subject to AllergyConstraint{p in Person, r in Restaurants, m in Meet}:
+z[p,m,r] <= Allergy[r,p]; 
 
 subject to Availibility{p in Person, m in Meet}: 
     whoGO[p, m] <= Avail[p, m];
@@ -93,7 +95,9 @@ subject to MeetingPair{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i, j, m] <= whoGO[j, m];
 subject to MeetingPair2{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i, j, m] <= whoGO[i, m];
+subject to MeetingPair3{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i, j, m] >= whoGO[i, m] + whoGO[j, m] - 1;
+subject to MeetingPair4{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i,j,m] = meetingPairs[j,i,m]; 
 
 subject to ShouldMeet{i in Person, j in Person: i <>j}: 

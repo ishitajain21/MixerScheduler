@@ -184,9 +184,6 @@ MN 3.8
 NO 4.4
 OP 4.6;
 
-# B H E VEG
-# E I NUT
-# F LAC
 param Allergy: A B C D E F G H I :=
 AA 1 0 1 1 0 1 1 0 1
 BB 1 0 1 1 0 1 1 0 1

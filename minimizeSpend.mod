@@ -16,9 +16,10 @@ param RestPrice{Restaurants};
 param RestCuisines{Restaurants, Cuisines};
 
 param RestRating{Restaurants};
+
+param Allergy{Restaurants, Person};
  
 var MinPrice{Meet} >= 0;  
-var TotalPrice >= 0;
 
 var s{Person, Person} >= 0;
 var whoGO{Person, Meet} binary;
@@ -29,8 +30,7 @@ var meetingPairs{Person, Person, Meet} binary;
 var z{Person, Meet, Restaurants} binary; # auxiliary variable for linearization
 
 maximize Obj:
-    -1000*sum{i in Person,j in Person} s[i,j] + sum{m in Meet, r in Restaurants} whereGO[m, r] * RestPrice[r]; 
-    # + sum {m in Meet, r in Restaurants, p in Person, c in Cuisines} z[p, m, r] * Cusin_pref[p, c] * RestCuisines[r, c] * (RestRating[r] / 5);
+    -1000*sum{i in Person,j in Person} s[i,j] - sum{p in Person} (1 / PricePS[p]) * sum{m in Meet, r in Restaurants} z[p, m, r] * RestPrice[r]; 
 
 # def of z, z is 1 iff whoGO and whereGO are both 1
 subject to z_leq_whoGO{p in Person, m in Meet, r in Restaurants}:
@@ -54,7 +54,7 @@ subject to PickFriSat{w in Week}:
 
 # number of people per meeting is up to 8
 subject to eightPersonPerMeet{m in Meet}: 
-   sum {p in Person} whoGO[p, m] <= 8;
+   sum {p in Person} whoGO[p, m] <= 6;
 
 # number of meetings per semester is up to 5
 subject to fiveMeetPerSem:
@@ -73,8 +73,8 @@ subject to OneRestPerSem{r in Restaurants}:
     sum {m in Meet} whereGO[m, r] <= 1;
 
 # this person can never go to a restuarant that has 0
-# subject to Allergy{p in Person, r in Restaurants, m in Meet}:
-# z[p,m,r] <= Allergy[p,r]; 
+subject to AllergyConstraint{p in Person, r in Restaurants, m in Meet}:
+z[p,m,r] <= Allergy[r,p]; 
 
 subject to Availibility{p in Person, m in Meet}: 
     whoGO[p, m] <= Avail[p, m];
@@ -86,23 +86,20 @@ subject to OneRestaurantPerMeet{m in Meet}:
 subject to twoPersonMin{m in Meet}: 
     sum {p in Person} whoGO[p, m] >= 2 * whenGO[m];
 
-# Meet yourself
 subject to MeetingPair0{i in Person, m in Meet}:
+    # MeetingPair[i,i,m] is 1 if person i attends meet m
     meetingPairs[i, i, m] = whoGO[i, m];
-# ensure well defined meeting pairs
-subject to MeetingPairUB{i in Person, j in Person, m in Meet: i <> j}: 
+
+subject to MeetingPair{i in Person, j in Person, m in Meet: i <> j}: 
     meetingPairs[i, j, m] <= whoGO[j, m];
-subject to MeetingPairUB2{i in Person, j in Person, m in Meet: i <> j}:
+subject to MeetingPair2{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i, j, m] <= whoGO[i, m];
-subject to MeetingPairLB{i in Person, j in Person, m in Meet: i <> j}:
+subject to MeetingPair3{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i, j, m] >= whoGO[i, m] + whoGO[j, m] - 1;
-subject to MeetingPairEq{i in Person, j in Person, m in Meet: i <> j}:
+subject to MeetingPair4{i in Person, j in Person, m in Meet: i <> j}:
     meetingPairs[i,j,m] = meetingPairs[j,i,m]; 
 
-# every pair that should meet meets at least once
 subject to ShouldMeet{i in Person, j in Person: i <>j}: 
     s[i,j] + sum{m in Meet} meetingPairs[i,j,m] >= 1; 
-
-# zero slack for self-pairing
 subject to slack{i in Person}: 
     s[i,i] = 0;
