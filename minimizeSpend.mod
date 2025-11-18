@@ -20,7 +20,6 @@ param RestRating{Restaurants};
 param Allergy{Restaurants, Person};
  
 var MinPrice{Meet} >= 0;  
-var TotalPrice >= 0;
 
 var s{Person, Person} >= 0;
 var whoGO{Person, Meet} binary;
@@ -31,7 +30,7 @@ var meetingPairs{Person, Person, Meet} binary;
 var z{Person, Meet, Restaurants} binary; # auxiliary variable for linearization
 
 maximize Obj:
-    -1000*sum{i in Person,j in Person} s[i,j] + sum {m in Meet, r in Restaurants, p in Person, c in Cuisines} z[p, m, r] * Cusin_pref[p, c] * RestCuisines[r, c] * (RestRating[r] / 5);
+    -1000*sum{i in Person,j in Person} s[i,j] - sum{p in Person} (1 / PricePS[p]) * sum{m in Meet, r in Restaurants} z[p, m, r] * RestPrice[r]; 
 
 # def of z, z is 1 iff whoGO and whereGO are both 1
 subject to z_leq_whoGO{p in Person, m in Meet, r in Restaurants}:

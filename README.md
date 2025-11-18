@@ -1,4 +1,6 @@
 
+- change price per meeting to price per semester
+
 constraints: 
 - play around with the slack variables for the price per restaurant 
 - requiring at least 2 people in each restaurant hang out (cant hang out alone)

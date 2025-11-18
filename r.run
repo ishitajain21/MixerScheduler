@@ -1,5 +1,6 @@
 reset;
-model "base1.mod"; 
+option solver gurobi;
+model "minimizeSpend.mod"; 
 data "data.dat"; 
 solve;
 display whoGO > whoGO.txt;
