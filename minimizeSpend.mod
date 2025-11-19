@@ -7,6 +7,13 @@ set Week;
 param Avail{Person, Meet};
 param Cusin_pref{Person, Cuisines};
 
+# slack params: 
+param SlackTotSem; 
+param SlackPerMeet;
+param PplInRest;
+param MeetingsPerSemPerPerson;
+param multiObj;
+
 param PricePM{Person};
 
 param PricePS{Person};  
@@ -18,8 +25,9 @@ param RestCuisines{Restaurants, Cuisines};
 param RestRating{Restaurants};
 
 param Allergy{Restaurants, Person};
- 
+param Friend{Person, Person};
 var MinPrice{Meet} >= 0;  
+var TotalPrice >= 0;
 
 var s{Person, Person} >= 0;
 var whoGO{Person, Meet} binary;
@@ -31,7 +39,6 @@ var z{Person, Meet, Restaurants} binary; # auxiliary variable for linearization
 
 maximize Obj:
     -1000*sum{i in Person,j in Person} s[i,j] - sum{p in Person} (1 / PricePS[p]) * sum{m in Meet, r in Restaurants} z[p, m, r] * RestPrice[r]; 
-
 # def of z, z is 1 iff whoGO and whereGO are both 1
 subject to z_leq_whoGO{p in Person, m in Meet, r in Restaurants}:
     z[p, m, r] <= whoGO[p, m];
@@ -43,22 +50,26 @@ subject to z_geq_sum{p in Person, m in Meet, r in Restaurants}:
     z[p, m, r] >= whoGO[p, m] + whereGO[m, r] - 1;
 
 subject to pricePerPerson{p in Person, m in Meet, r in Restaurants}: 
-    whereGO[m, r] * RestPrice[r] <= MinPrice[m] + 10;
-
-subject to defMinPrice{m in Meet, p in Person}: 
-   MinPrice[m] >= whoGO[p, m] * PricePM[p];
-
+    whereGO[m, r] * RestPrice[r] <=  PricePM[p] + SlackPerMeet + 1000*(1- whoGO[p, m]);
+ # A restaurant can only be picked if all attendees can afford it 
+ 
+subject to PricePerPersonPerSem{p in Person}:
+	PricePS[p] + SlackTotSem >= sum{m in Meet, r in Restaurants} z[p,m,r] * RestPrice[r];
 
 subject to PickFriSat{w in Week}: 
     whenGO[3 * w - 2] + whenGO[3 * w - 1] + whenGO[3 * w] <= 1;
 
+subject to FriendsGoing{p in Person, m in Meet}:
+	# only go if a friend is going 
+	whoGO[p,m] <= sum{i in Person} Friend[i,p] * whoGO[i,m];
+
 # number of people per meeting is up to 8
 subject to eightPersonPerMeet{m in Meet}: 
-   sum {p in Person} whoGO[p, m] <= 8;
+   sum {p in Person} whoGO[p, m] <= PplInRest;
 
 # number of meetings per semester is up to 5
 subject to fiveMeetPerSem:
-   sum {m in Meet} whenGO[m] <= 5;
+   sum {m in Meet} whenGO[m] <= MeetingsPerSemPerPerson;
 
 # also we can go sometime only if some person goes 
 subject to NoWhoGo{m in Meet, p in Person}: 
@@ -74,7 +85,7 @@ subject to OneRestPerSem{r in Restaurants}:
 
 # this person can never go to a restuarant that has 0
 subject to AllergyConstraint{p in Person, r in Restaurants, m in Meet}:
-z[p,m,r] <= Allergy[r,p]; 
+	z[p,m,r] <= Allergy[r,p]; 
 
 subject to Availibility{p in Person, m in Meet}: 
     whoGO[p, m] <= Avail[p, m];
