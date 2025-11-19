@@ -8,6 +8,7 @@ param Avail{Person, Meet};
 param Cusin_pref{Person, Cuisines};
 
 # slack params: 
+
 param SlackTotSem; 
 param SlackPerMeet;
 param PplInRest;
