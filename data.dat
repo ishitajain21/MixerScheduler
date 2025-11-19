@@ -1,9 +1,14 @@
 set Meet:= 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45;
-set Person:= A B C D E F G H I J K L;
+set Person:= A B C D E F G H I; #J K L;
 set Week:= 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15;
 set Cuisines:= Thai Chinese Vietnamese Japanese Indian Italian Mexican American Mediterranean;
 set Restaurants:= AA BB CC DD EE FF GG HH II JJ KK LL MM NN OO PP QQ RR SS TT UU VV WW XX YY ZZ AB BC CD DE EF FG GH HI IJ JK KL LM MN NO OP;
 
+param SlackTotSem = 20;
+param SlackPerMeet = 10;
+param PplInRest = 8;
+param MeetingsPerSemPerPerson = 5;
+param multiObj = 30;
 
 param Avail: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 :=
 A 0 1 1 0 1 0 0 1 1 0 1 0 0 1 1 0 1 0 0 1 1 0 1 0 0 1 1 0 1 0 0 1 1 0 1 0 0 1 1 0 1 0 0 1 1
