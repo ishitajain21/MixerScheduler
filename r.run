@@ -1,9 +1,594 @@
+############################################################
+# BASE MODEL (Already Completed in your prompt)
+############################################################
+
+############################################################
+# MIXED MODEL (Already Completed in your prompt)
+############################################################
+
+############################################################
+# SPENDING MODEL (Already Completed in your prompt)
+############################################################
+
+############################################################
+# 2. SENSITIVITY
+############################################################
+
+option solver gurobi; 
+option gurobi_options "MIPGap=0.005";
+
+############################################################
+# SlackTotSem ∈ {10, 30}
+############################################################
+
+
+######################## SlackTotSem = 10 (Partially Completed in your prompt) ########################
+
+# MIXED (with SlackTotSem=10)
 reset;
-option solver gurobi;
-model "minimizeSpend.mod"; 
-data "data.dat"; 
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 10;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
 solve;
-display whoGO > whoGO.txt;
-display whenGO > whenGO.txt;
-display whereGO > whereGO.txt;
-display meetingPairs > meet.txt;
+display whenGO > "/Users/ishitajain/OR/SlackTotSem=10/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackTotSem=10/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackTotSem=10/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackTotSem=10/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackTotSem=10/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackTotSem=10/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackTotSem=10/mixed_obj.txt";
+
+# SPENDING (with SlackTotSem=10)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 10;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackTotSem=10/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackTotSem=10/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackTotSem=10/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackTotSem=10/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackTotSem=10/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackTotSem=10/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackTotSem=10/spending_obj.txt";
+
+
+######################## SlackTotSem = 30 ########################
+
+# BASE (with SlackTotSem=30)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 30;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackTotSem=30/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackTotSem=30/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackTotSem=30/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackTotSem=30/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackTotSem=30/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackTotSem=30/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackTotSem=30/BASE_obj.txt";
+
+# MIXED (with SlackTotSem=30)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 30;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackTotSem=30/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackTotSem=30/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackTotSem=30/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackTotSem=30/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackTotSem=30/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackTotSem=30/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackTotSem=30/mixed_obj.txt";
+
+# SPENDING (with SlackTotSem=30)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 30;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackTotSem=30/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackTotSem=30/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackTotSem=30/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackTotSem=30/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackTotSem=30/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackTotSem=30/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackTotSem=30/spending_obj.txt";
+
+
+############################################################
+# SlackPerMeet ∈ {15, 20}
+############################################################
+
+
+######################## SlackPerMeet = 15 ########################
+
+# BASE (with SlackPerMeet=15)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 15;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackPerMeet=15/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackPerMeet=15/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackPerMeet=15/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackPerMeet=15/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackPerMeet=15/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackPerMeet=15/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackPerMeet=15/BASE_obj.txt";
+
+# MIXED (with SlackPerMeet=15)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 15;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackPerMeet=15/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackPerMeet=15/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackPerMeet=15/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackPerMeet=15/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackPerMeet=15/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackPerMeet=15/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackPerMeet=15/mixed_obj.txt";
+
+# SPENDING (with SlackPerMeet=15)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 15;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackPerMeet=15/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackPerMeet=15/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackPerMeet=15/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackPerMeet=15/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackPerMeet=15/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackPerMeet=15/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackPerMeet=15/spending_obj.txt";
+
+
+######################## SlackPerMeet = 20 ########################
+
+# BASE (with SlackPerMeet=20)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 20;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackPerMeet=20/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackPerMeet=20/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackPerMeet=20/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackPerMeet=20/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackPerMeet=20/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackPerMeet=20/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackPerMeet=20/BASE_obj.txt";
+
+# MIXED (with SlackPerMeet=20)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 20;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackPerMeet=20/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackPerMeet=20/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackPerMeet=20/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackPerMeet=20/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackPerMeet=20/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackPerMeet=20/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackPerMeet=20/mixed_obj.txt";
+
+# SPENDING (with SlackPerMeet=20)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 20;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/SlackPerMeet=20/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/SlackPerMeet=20/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/SlackPerMeet=20/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/SlackPerMeet=20/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/SlackPerMeet=20/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/SlackPerMeet=20/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/SlackPerMeet=20/spending_obj.txt";
+
+
+############################################################
+# PplInRest ∈ {6}
+############################################################
+
+
+######################## PplInRest = 6 ########################
+
+# BASE (with PplInRest=6)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 6;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/PplInRest=6/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/PplInRest=6/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/PplInRest=6/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/PplInRest=6/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/PplInRest=6/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/PplInRest=6/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/PplInRest=6/BASE_obj.txt";
+
+# MIXED (with PplInRest=6)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 6;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/PplInRest=6/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/PplInRest=6/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/PplInRest=6/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/PplInRest=6/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/PplInRest=6/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/PplInRest=6/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/PplInRest=6/mixed_obj.txt";
+
+# SPENDING (with PplInRest=6)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 6;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/PplInRest=6/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/PplInRest=6/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/PplInRest=6/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/PplInRest=6/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/PplInRest=6/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/PplInRest=6/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/PplInRest=6/spending_obj.txt";
+
+
+############################################################
+# MeetingsPerSemPerPerson ∈ {4, 6, 7}
+############################################################
+
+
+######################## MeetingsPerSemPerPerson = 4 ########################
+
+# BASE (with MeetingsPerSemPerPerson=4)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 4;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=4/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=4/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=4/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=4/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=4/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=4/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=4/BASE_obj.txt";
+
+# MIXED (with MeetingsPerSemPerPerson=4)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 4;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=4/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=4/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=4/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=4/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=4/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=4/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=4/mixed_obj.txt";
+
+# SPENDING (with MeetingsPerSemPerPerson=4)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 4;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=4/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=4/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=4/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=4/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=4/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=4/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=4/spending_obj.txt";
+
+
+######################## MeetingsPerSemPerPerson = 6 ########################
+
+# BASE (with MeetingsPerSemPerPerson=6)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 6;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=6/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=6/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=6/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=6/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=6/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=6/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=6/BASE_obj.txt";
+
+# MIXED (with MeetingsPerSemPerPerson=6)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 6;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=6/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=6/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=6/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=6/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=6/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=6/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=6/mixed_obj.txt";
+
+# SPENDING (with MeetingsPerSemPerPerson=6)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 6;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=6/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=6/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=6/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=6/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=6/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=6/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=6/spending_obj.txt";
+
+
+######################## MeetingsPerSemPerPerson = 7 ########################
+
+# BASE (with MeetingsPerSemPerPerson=7)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 7;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=7/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=7/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=7/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=7/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=7/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=7/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=7/BASE_obj.txt";
+
+# MIXED (with MeetingsPerSemPerPerson=7)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 7;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=7/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=7/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=7/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=7/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=7/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=7/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=7/mixed_obj.txt";
+
+# SPENDING (with MeetingsPerSemPerPerson=7)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 7;
+let multiObj := 15;
+solve;
+display whenGO > "/Users/ishitajain/OR/Meetings=7/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/Meetings=7/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/Meetings=7/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/Meetings=7/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/Meetings=7/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/Meetings=7/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/Meetings=7/spending_obj.txt";
+
+
+############################################################
+# multiObj ∈ {10, 20}
+############################################################
+
+
+######################## multiObj = 10 ########################
+
+# BASE (with multiObj=10)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 10;
+solve;
+display whenGO > "/Users/ishitajain/OR/multiObj=10/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/multiObj=10/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/multiObj=10/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/multiObj=10/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/multiObj=10/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/multiObj=10/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/multiObj=10/BASE_obj.txt";
+
+# MIXED (with multiObj=10)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 10;
+solve;
+display whenGO > "/Users/ishitajain/OR/multiObj=10/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/multiObj=10/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/multiObj=10/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/multiObj=10/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/multiObj=10/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/multiObj=10/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/multiObj=10/mixed_obj.txt";
+
+# SPENDING (with multiObj=10)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 10;
+solve;
+display whenGO > "/Users/ishitajain/OR/multiObj=10/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/multiObj=10/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/multiObj=10/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/multiObj=10/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/multiObj=10/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/multiObj=10/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/multiObj=10/spending_obj.txt";
+
+
+######################## multiObj = 20 ########################
+
+# BASE (with multiObj=20)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/m.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 20;
+solve;
+display whenGO > "/Users/ishitajain/OR/multiObj=20/BASE_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/multiObj=20/BASE_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/multiObj=20/BASE_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/multiObj=20/BASE_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/multiObj=20/BASE_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/multiObj=20/BASE_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/multiObj=20/BASE_obj.txt";
+
+# MIXED (with multiObj=20)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/mixed.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 20;
+solve;
+display whenGO > "/Users/ishitajain/OR/multiObj=20/mixed_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/multiObj=20/mixed_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/multiObj=20/mixed_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/multiObj=20/mixed_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/multiObj=20/mixed_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/multiObj=20/mixed_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/multiObj=20/mixed_obj.txt";
+
+# SPENDING (with multiObj=20)
+reset;
+model "/Users/ishitajain/OR/CaseStudy2/spending.mod";
+data "/Users/ishitajain/OR/Hw3/d.dat";
+let SlackTotSem := 20;
+let SlackPerMeet := 10;
+let PplInRest := 8;
+let MeetingsPerSemPerPerson := 5;
+let multiObj := 20;
+solve;
+display whenGO > "/Users/ishitajain/OR/multiObj=20/spending_whenGO.txt";
+display whereGO > "/Users/ishitajain/OR/multiObj=20/spending_whereGO.txt";
+display whoGO   > "/Users/ishitajain/OR/multiObj=20/spending_whoGO.txt";
+display Obj     >> "/Users/ishitajain/OR/multiObj=20/spending_obj.txt";
+display sumMeets      >> "/Users/ishitajain/OR/multiObj=20/spending_obj.txt";
+display averagePeople >> "/Users/ishitajain/OR/multiObj=20/spending_obj.txt";
+display averagePrice  >> "/Users/ishitajain/OR/multiObj=20/spending_obj.txt";
