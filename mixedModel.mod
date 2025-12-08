@@ -37,11 +37,14 @@ var whereGO{Meet, Restaurants} binary;
 var meetingPairs{Person, Person, Meet} binary;
 var z{Person, Meet, Restaurants} binary; # auxiliary variable for linearization
 
+var sumMeets;
+var averagePeople; 
+var averagePrice;
 
 maximize Obj:
     -100000*sum{i in Person,j in Person} s[i,j] 
     - multiObj * sum{p in Person} (1 / PricePS[p]) * sum{m in Meet, r in Restaurants} z[p, m, r] * RestPrice[r]  #2 
-    + sum {m in Meet, r in Restaurants, p in Person, c in Cuisines} z[p, m, r] * Cusin_pref[p, c] * RestCuisines[r, c] * (RestRating[r] / 5);  # 64
+    + sum {m in Meet, r in Restaurants, p in Person, c in Cuisines} z[p, m, r] * (Cusin_pref[p, c] -1) / 2 * (RestCuisines[r, c] )* (RestRating[r] / 5);
 # def of z, z is 1 iff whoGO and whereGO are both 1
 subject to z_leq_whoGO{p in Person, m in Meet, r in Restaurants}:
     z[p, m, r] <= whoGO[p, m];
@@ -117,3 +120,10 @@ subject to ShouldMeet{i in Person, j in Person: i <>j}:
     s[i,j] + sum{m in Meet} meetingPairs[i,j,m] >= 1; 
 subject to slack{i in Person}: 
     s[i,i] = 0;
+
+subject to settingVars:
+	sumMeets = sum{m in Meet} whenGO[m]; 
+subject to abs: 
+	averagePeople   = (sum{i in Person, m in Meet} whoGO[i,m] ) / sumMeets; 
+subject to abss: 
+	averagePrice = sum{r in Restaurants, m in Meet} whereGO[m, r]*RestPrice[r] / sumMeets;
