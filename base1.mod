@@ -41,6 +41,7 @@ var z{Person, Meet, Restaurants} binary; # auxiliary variable for linearization
 var sumMeets;
 var averagePeople; 
 var averagePrice; 
+var variance; 
 
 
 maximize Obj:
@@ -126,6 +127,7 @@ subject to abs:
 	averagePeople   = (sum{i in Person, m in Meet} whoGO[i,m] ) / sumMeets; 
 subject to abss: 
 	averagePrice = sum{r in Restaurants, m in Meet} whereGO[m, r]*RestPrice[r] / sumMeets;
-	 
-	
+ 
+subject to calcVariance: 
+	variance = sqrt ( (1 / (sumMeets - 1)) * sum{m in Meet} ( (sum{p in Person} whoGO[p, m]) - averagePeople )^2 * whenGO[m] );
 	
